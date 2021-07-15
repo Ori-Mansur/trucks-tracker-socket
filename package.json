@@ -1,0 +1,15 @@
+{
+  "name": "wheel-iot-gateway-mock",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "moment": "^2.29.1",
+    "ws": "^7.5.1"
+  },
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  }
+}
