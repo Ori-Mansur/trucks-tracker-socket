@@ -1,6 +1,7 @@
 import WebSocket from 'ws'
 import express from 'express';
 import * as http from 'http';
+import compression  from 'compression'
 
 import MockDeviceLogger from './MockDeviceLogger.js'
 
@@ -23,7 +24,16 @@ let PORT = process.env.PORT || DEFAULT_PORT
 // }
 const app = express();
 const server = http.createServer(app);
-app.get('/',(req,res)=>res.send('alive'))
+app.get('/api/server', (req, res) => {
+  return res.send(process.env.SOCKET_URL)
+})
+
+app.use(compression())
+
+
+
+
+app.use('/', express.static( './dist'));
 const wss = new WebSocket.Server({
   server
 })
