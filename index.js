@@ -23,7 +23,7 @@ if (PORT) {
 }
 const app = express();
 const server = http.createServer(app);
-
+app.get('/',(req,res)=>res.send('alive'))
 const wss = new WebSocket.Server({
   server
 })
