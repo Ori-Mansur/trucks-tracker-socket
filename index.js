@@ -12,15 +12,15 @@ const STARTING_LOCATIONS = [[40.104294, -116.427831],
                            [40.139038, -116.449662],
                            [40.001838, -116.350304]]
 
-let PORT = process.argv.slice(2)[0] || DEFAULT_PORT
+let PORT = process.env.PORT || DEFAULT_PORT
 
-if (PORT) {
-  PORT = parseInt(PORT, 10)
-  if (!PORT) {
-    PORT = DEFAULT_PORT
-    console.log(`Port argument must be numeric! Defaulting to port ${DEFAULT_PORT}.`)
-  }
-}
+// if (PORT) {
+//   PORT = parseInt(PORT, 10)
+//   if (!PORT) {
+//     PORT = DEFAULT_PORT
+//     console.log(`Port argument must be numeric! Defaulting to port ${DEFAULT_PORT}.`)
+//   }
+// }
 const app = express();
 const server = http.createServer(app);
 app.get('/',(req,res)=>res.send('alive'))
