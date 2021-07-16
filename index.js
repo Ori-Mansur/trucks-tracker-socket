@@ -1,4 +1,6 @@
 import WebSocket from 'ws'
+import express from 'express';
+import * as http from 'http';
 
 import MockDeviceLogger from './MockDeviceLogger.js'
 
@@ -19,9 +21,11 @@ if (PORT) {
     console.log(`Port argument must be numeric! Defaulting to port ${DEFAULT_PORT}.`)
   }
 }
+const app = express();
+const server = http.createServer(app);
 
 const wss = new WebSocket.Server({
-  port: PORT
+  server
 })
 
 const trucks = STARTING_LOCATIONS.map((location, index) => new MockDeviceLogger(100000000 + index, location[0], location[1]))
@@ -56,3 +60,8 @@ wss.on('connection', ws => {
     trucks.forEach(truck => { truck.stopTransmitting() })
   })
 })
+
+
+server.listen(PORT, () => {
+  console.log(`Server started on port ${server.address().port} :)`);
+});
